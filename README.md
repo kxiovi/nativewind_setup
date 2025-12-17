@@ -1,50 +1,106 @@
-# Welcome to your Expo app 👋
-
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
-
-## Get started
-
-1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
+# Basic
+1. start project and `cd` into it
+```aiignore
+npx create-expo-app@latest
+```
+2. install dependencies
+```aiignore
+npm install
+```
+3. start a fresh, bare-bones project
+```aiignore
 npm run reset-project
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+# NativeWind
+>> Create all files at root unless otherwise stated.
+1. install NativeWind and its dependencies
+```aiignore
+npm install nativewind react-native-reanimated@~3.17.4 react-native-safe-area-context@5.4.0
+npm install -D tailwindcss
+```
+2. tailwind config
+```aiignore
+npx tailwindcss init
+```
+3. Replace contents of `tailwind.config.js` with:
+```aiignore
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ["./App.tsx", "./components/**/*.{js,jsx,ts,tsx}", "./app/**/*.{js,jsx,ts,tsx}"],
+  presets: [require("nativewind/preset")],
+  theme: { extend: {} },
+  plugins: [],
+};
+```
+4. Create `babel.config.js` file and write:
+```aiignore
+module.exports = function (api) {
+  api.cache(true);
+  return {
+    presets: [
+      ["babel-preset-expo", { jsxImportSource: "nativewind" }],
+      "nativewind/babel",
+    ],
+  };
+};
+```
+5. Create `metro.config.js` and write:
+```aiignore
+{ getDefaultConfig } = require("expo/metro-config");
+const { withNativeWind } = require("nativewind/metro");
 
-## Learn more
+const config = getDefaultConfig(__dirname);
 
-To learn more about developing your project with Expo, look at the following resources:
+module.exports = withNativeWind(config, { input: "./global.css" });
+```
+6. Create `global.css` and write: 
+```aiignore
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+7. Import `global.css` to `_layout.tsx`. 
+8. Modify `app.json` such that the `bundler` is `metro`:
+```aiignore
+{
+  "expo": {
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+# TypeScript
+1. Create `nativewind-env.d.ts` and write:
+```aiignore
+/// <reference types="nativewind/types" />
+```
 
-## Join the community
+# Test it out: 
+`_layout.tsx` should look like this: 
+```aiignore
+import "../global.css"
+import { Text, View } from "react-native";
 
-Join our community of developers creating universal apps.
+export default function RootLayout() {
+  return (
+      <View className="flex-1 items-center justify-center bg-white">
+        <Text className="text-xl font-bold text-blue-500">
+          Welcome to Nativewind!
+        </Text>
+      </View>
+  );
+}
+```  
+Now, run the following command to see "Welcome Nativewind" in blue text.
+```aiignore
+npx expo start
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+# Sources
+- [reactnative docs](https://reactnative.dev/docs/environment-setup)
+- [expo docs](https://docs.expo.dev/get-started/start-developing/)
+- [nativewind docs](https://www.nativewind.dev/docs/getting-started/installation)
+- [another struggling soul's blog](https://dev.to/agent_69/how-to-setup-tailwind-css-to-your-expo-project-2l4i)
