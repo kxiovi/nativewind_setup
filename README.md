@@ -1,3 +1,7 @@
+The reason this exists is because installing NativeWind
+has overall been a pain, and I need proper guidelines if I 
+am to do this again. 
+
 # Basic
 1. start project and `cd` into it
 ```aiignore
@@ -13,7 +17,7 @@ npm run reset-project
 ```
 
 # NativeWind
->> Create all files at root unless otherwise stated.
+> Create all files at root or project unless otherwise stated.
 1. install NativeWind and its dependencies
 ```aiignore
 npm install nativewind react-native-reanimated@~3.17.4 react-native-safe-area-context@5.4.0
