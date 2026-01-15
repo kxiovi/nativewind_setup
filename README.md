@@ -104,6 +104,28 @@ npx expo start
 ```
 <img width="340" height="98" alt="image" src="https://github.com/user-attachments/assets/fe62228b-7ccb-494e-ad5c-dfd38e541ef1" />
 
+# Additional: Flask
+1. Create a directory called `api` at the root of the project.
+2. `cd` into the `api` directory. Start a virtual env to run the backend (and install different python libraries)
+```
+cd api/
+python3 -m venv venv
+. venv/bin/activate
+```
+3. Now install libraries
+```
+pip install flask python-dotenv
+```
+4. Create a new file named `api.py` and write: 
+```
+from flask import Flask
+app = Flask(__name__)
+```
+5. Before running the python code, still inside the `api` directory, create a new file `.flaskenv` and write:
+```
+FLASK_APP = api.py
+FLASK_DEBUG=1
+```
 
 # Sources
 - [reactnative docs](https://reactnative.dev/docs/environment-setup)
