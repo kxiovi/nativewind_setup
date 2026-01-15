@@ -51,7 +51,7 @@ module.exports = function (api) {
 ```
 5. Create `metro.config.js` and write:
 ```aiignore
-{ getDefaultConfig } = require("expo/metro-config");
+const { getDefaultConfig } = require("expo/metro-config");
 const { withNativeWind } = require("nativewind/metro");
 
 const config = getDefaultConfig(__dirname);
@@ -102,6 +102,8 @@ Now, run the following command to see "Welcome Nativewind" in blue text.
 ```aiignore
 npx expo start
 ```
+<img width="340" height="98" alt="image" src="https://github.com/user-attachments/assets/fe62228b-7ccb-494e-ad5c-dfd38e541ef1" />
+
 
 # Sources
 - [reactnative docs](https://reactnative.dev/docs/environment-setup)
