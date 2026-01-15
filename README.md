@@ -98,7 +98,7 @@ export default function RootLayout() {
   );
 }
 ```  
-Now, run the following command to see "Welcome Nativewind" in blue text.
+Now, run the following command to see "Welcome to Nativewind!" in blue text.
 ```aiignore
 npx expo start
 ```
