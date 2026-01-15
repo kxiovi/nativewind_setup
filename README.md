@@ -3,27 +3,27 @@ has overall been a pain, and I need proper guidelines if I
 am to do this again. 
 
 # Basic
-1. start project and `cd` into it
+1. Start project and `cd` into it
 ```aiignore
 npx create-expo-app@latest
 ```
-2. install dependencies
+2. Install dependencies
 ```aiignore
 npm install
 ```
-3. start a fresh, bare-bones project
+3. Start a fresh, bare-bones project
 ```aiignore
 npm run reset-project
 ```
 
 # NativeWind
 > Create all files at root or project unless otherwise stated.
-1. install NativeWind and its dependencies
+1. Install NativeWind and its dependencies
 ```aiignore
 npm install nativewind react-native-reanimated@~3.17.4 react-native-safe-area-context@5.4.0
 npm install -D tailwindcss
 ```
-2. tailwind config
+2. Tailwind config
 ```aiignore
 npx tailwindcss init
 ```
